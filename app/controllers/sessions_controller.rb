@@ -36,7 +36,7 @@ class SessionsController < ApplicationController
   end
   
   def sign_in(user)
-    session[:user_id] = 123
+    session[:user_id] = user.id
     redirect_to(root_url)
   end
 
