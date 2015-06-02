@@ -48,7 +48,7 @@ end
 
 group :production do
   #gems required by Heroku
-  gem 'pg'
-  gem 'rails_12factor'
+  #gem 'pg'
+  #gem 'rails_12factor'
 end
 
