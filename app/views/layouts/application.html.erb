@@ -21,15 +21,13 @@
 	</head>
 
 	<body>
-
-		<% if session[:user_id] != nil%>
-			#output the correct navigation bar
-		<% else %>
-			<%= render :partial => 'shared/nav' %>
-		<% end%>
+		
+		<!--Navigation bar-->
+		<%= load_nav_bar %>
 		
 		<%= yield %>
-
+		
+		<!--Footer-->
 		<%= render :partial => 'shared/footer' %>
 		
 		<!-- jQuery -->
