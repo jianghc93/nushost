@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  def new
+  def login
     authenticate_with_open_id("http://openid.nus.edu.sg",
                               :required => [:fullname, :nickname, :email]) do |result, identity_url, registration|
       if result.successful?
@@ -9,18 +9,19 @@ class SessionsController < ApplicationController
         end
         sign_in user
       else
+        flash[:login_fail] = "You have failed to login:("
         redirect_to welcome_path
       end
     end
   end
 
-  def destroy
-    # contains the logic for destroying the user
-    # session (logout)
+  def logout
+    reset_session
+    redirect_to(root_url)
   end
 
   def sign_in(user)
-    session[:user_id] = user.id
+    session[:user_id] = user.id 
     redirect_to(root_url)
   end
 

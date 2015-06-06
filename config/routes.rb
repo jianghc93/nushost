@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   
+  #this is the old convention
   get '/welcome' => 'welcome#index'
-  resource :session, only: [:new, :destroy]
+
+  get '/login', to: 'sessions#login', as: 'login'
+  get '/logout', to: 'sessions#logout', as: 'logout'
+  #resource :session, only: [:new, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
