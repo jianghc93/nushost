@@ -10,19 +10,20 @@ class SessionsController < ApplicationController
         sign_in user
       else
         flash[:login_fail] = "You have failed to login:("
-        redirect_to welcome_path
+        redirect_to root_url
       end
     end
   end
 
   def logout
     reset_session
-    redirect_to(root_url)
+    redirect_to root_url
   end
-
+  
   def sign_in(user)
-    session[:user_id] = user.id 
-    redirect_to(root_url)
+    session[:user_id] = user.id
+    set_current_user user
+    redirect_to root_url
   end
 
 end
