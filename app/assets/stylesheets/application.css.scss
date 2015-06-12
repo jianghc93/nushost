@@ -16,10 +16,8 @@
 /*"bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"*/
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "welcome.scss";
 
 body{
   padding-bottom: 70px;
   padding-top: 70px;
-  background-color: #87CEEB;
 }

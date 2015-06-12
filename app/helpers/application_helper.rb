@@ -8,9 +8,9 @@ module ApplicationHelper
     end
   end
   
-  def load_flash_loginfail
-    if flash[:login_fail]
-      render :partial => 'shared/loginfail'
+  def load_flash(msg)
+    if flash[msg]
+      render :partial => 'shared/' + msg
     end
   end
 

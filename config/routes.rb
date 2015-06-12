@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get '/login', to: 'sessions#login', as: 'login'
   get '/logout', to: 'sessions#logout', as: 'logout'
+  get '/events', to: 'events#index'
+  get '/events/:id', to: 'events#show'
   #resource :session, only: [:new, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.

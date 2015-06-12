@@ -1,0 +1,34 @@
+<table class="table table-bordered">
+
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>Event</th>
+    <th>When</th>
+    <th>Venue</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @events.each do |event|%>
+  <tr>
+        <th scope="row"><%=event.id%></th>
+        <td>
+          <b>Title:</b><%=event.title%><br>
+          <b>Description:<%=event.summary%></b>
+        </td>
+        <td>
+          <b>Date: <%=event.date%></b>
+          <b>Time: <%=event.time%></b>
+        </td>
+        <td>This is for venue</td>
+        <td>
+          <a class="btn btn-default" href="/<%= event.id%>" role="button">Learn More</a>
+          <a class="btn btn-default" href="#" role="button">Join</a>
+        </td>
+  </tr>
+  <% end%>
+  </tbody>
+
+</table>

@@ -11,7 +11,8 @@
 	<%= load_nav_bar %>
 	
 	<body>
-		<%= load_flash_loginfail %>
+		<%= load_flash 'login_fail' %>
+        <%= load_flash 'auth_fail' %>
 		<%= yield %>
 	</body>
 

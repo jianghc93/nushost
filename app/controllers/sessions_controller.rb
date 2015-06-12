@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :authenticate_user
+
   def login
     authenticate_with_open_id("http://openid.nus.edu.sg",
                               :required => [:fullname, :nickname, :email]) do |result, identity_url, registration|
@@ -7,22 +9,16 @@ class SessionsController < ApplicationController
         if user == nil
           user = User.create(name: registration['fullname'], nickname: registration['nickname'], email: registration['email'])
         end
-        sign_in user
+        session[:user_id] = user.id
       else
         flash[:login_fail] = "You have failed to login:("
-        redirect_to root_url
       end
+      redirect_to root_url
     end
   end
 
   def logout
     reset_session
-    redirect_to root_url
-  end
-  
-  def sign_in(user)
-    session[:user_id] = user.id
-    set_current_user user
     redirect_to root_url
   end
 
