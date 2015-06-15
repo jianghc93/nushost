@@ -27,6 +27,7 @@
       <label>Venue</label>
       <input type="text" id="venue" class="form-control" name="venue" placeholder="Where the event is at">
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <!--<button type="submit" class="btn btn-default">Create</button>-->
+    <%= button_tag "Create", class: "btn btn-default", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Creating event..."}%>
   </form>
 </div>
