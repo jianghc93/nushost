@@ -11,8 +11,12 @@
 	<%= load_nav_bar %>
 	
 	<body>
-		<%= load_flash 'login_fail' %>
-        <%= load_flash 'auth_fail' %>
+		<div class="container">
+            <%= load_flash 'login_fail' %>
+            <%= load_flash 'auth_fail' %>
+            <%= load_flash 'event_fail' %>
+            <%= load_flash 'event_succ' %>
+        </div>
 		<%= yield %>
 	</body>
 

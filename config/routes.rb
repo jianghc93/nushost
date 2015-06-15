@@ -5,9 +5,12 @@ Rails.application.routes.draw do
 
   get '/login', to: 'sessions#login', as: 'login'
   get '/logout', to: 'sessions#logout', as: 'logout'
-  get '/events', to: 'events#index'
-  get '/events/:id', to: 'events#show'
-  #resource :session, only: [:new, :destroy]
+
+  resources :events
+  #All the following get routes can be replaced by the above code
+  #get '/events', to: 'events#index'
+  #get '/events/new', to: 'events#new'
+  #get '/events/:id', to: 'events#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

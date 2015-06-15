@@ -19,8 +19,8 @@
           <b>Description:<%=event.summary%></b>
         </td>
         <td>
-          <b>Date: <%=event.date%></b>
-          <b>Time: <%=event.time%></b>
+          <b>Date:</b> <%=event.time.strftime("%d %b %Y")%><br>
+          <b>Time:</b> <%=event.time.strftime("%I %M %p")%><br>
         </td>
         <td>This is for venue</td>
         <td>
