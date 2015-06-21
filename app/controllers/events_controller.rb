@@ -25,8 +25,10 @@ class EventsController < ApplicationController
     arrDate = params[:date].split("-")
     arrTime = params[:time].tr('A-Za-z ', '').split(":")
 
-    #checks if the time is in PM or AM
-    if params[:time].include? "P"
+    #checks if the time is in PM. If yes add 12 hours to it. Special case is when its 12 AM. Need to minus 12 hours.
+    if (params[:time].include? "A") && arrTime[0] == "12"
+      arrTime[0] = 0
+    elsif (params[:time].include? "P") && arrTime[0] != "12"
       arrTime[0] = arrTime[0].to_i + 12
     end
 

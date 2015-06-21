@@ -10,4 +10,5 @@ Event.create(title: 'NUS Host Launch Party',
              host: 'FatBoys',
              description: 'Open Party to celebrate the completion of Orbital Milestone 1',
              summary: 'Orbital milestone party',
-             time: Time.current())
+             time: Time.current(),
+             venue: 'Some place')
