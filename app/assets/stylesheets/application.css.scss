@@ -23,3 +23,12 @@ body{
   padding-top: 70px;
 }
 
+.table {
+  table-layout:fixed;
+}
+
+.table-row-text{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

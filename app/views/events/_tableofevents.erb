@@ -2,32 +2,34 @@
 
   <thead>
   <tr>
-    <th>id</th>
-    <th>Event</th>
-    <th>When</th>
-    <th>Venue</th>
-    <th></th>
+    <th class="col-md-1">id</th>
+    <th class="col-md-6">Event</th>
+    <th class="col-md-2">When</th>
+    <th class="col-md-2">Venue</th>
+    <th class="col-md-2"></th>
   </tr>
   </thead>
 
   <tbody>
   <% @events.each do |event|%>
-  <tr>
+      <tr>
         <th scope="row"><%=event.id%></th>
         <td>
-          <b>Title:</b><%=event.title%><br>
-          <b>Description:<%=event.summary%></b>
+          <div class="table-row-text"><b>Title: </b><%=event.title%></div>
+          <div class="table-row-text"><b>Description: </b><%=event.summary%></div>
+          <b>By: </b><%=event.host%>
         </td>
         <td>
           <b>Date:</b> <%=event.time.strftime("%d %b %Y")%><br>
           <b>Time:</b> <%=event.time.strftime("%I %M %p")%><br>
         </td>
-        <td>This is for venue</td>
+        <td><div class="table-row-text"> <%=event.venue%></div></td>
         <td>
-          <a class="btn btn-default" href="/<%= event.id%>" role="button">Learn More</a>
-          <a class="btn btn-default" href="#" role="button">Join</a>
+          <a class="btn btn-default col-md-6" href="/events/<%= event.id%>" role="button">Info</a>
+          <a class="btn btn-default col-md-6" href="#" role="button">Join</a>
         </td>
-  </tr>
+        </div>
+    </tr>
   <% end%>
   </tbody>
 

@@ -1,12 +1,17 @@
 class EventsController < ApplicationController
   #shows all events
   def index
-    @events = Event.all();
+    @events = Event.all().reverse_order
+  end
+
+  #shows all events created by user
+  def myevents
+    @events = Event.where(host: current_user.name).reverse_order
   end
 
   #shows a single event
   def show
-    @event = Event.find_by_id(params[:id]);
+    @event = Event.find_by_id(params[:id])
   end
 
   #returns a html form for creating a new photo
@@ -20,7 +25,7 @@ class EventsController < ApplicationController
     arrDate = params[:date].split("-")
     arrTime = params[:time].tr('A-Za-z ', '').split(":")
 
-
+    #checks if the time is in PM or AM
     if params[:time].include? "P"
       arrTime[0] = arrTime[0].to_i + 12
     end
@@ -39,5 +44,6 @@ class EventsController < ApplicationController
     end
     redirect_to root_url
   end
+
 
 end
