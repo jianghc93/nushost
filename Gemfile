@@ -23,6 +23,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'jquery-turbolinks'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem install unicorn
 
 # For open id authentication
 gem 'open_id_authentication', '~> 1.2.0'
@@ -46,6 +47,8 @@ group :development, :test do
   
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+
+  gem 'capistrano', '~> 3.4.0'
 end
 
 group :production do
