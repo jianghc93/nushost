@@ -34,6 +34,9 @@ gem 'autoprefixer-rails'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 
+gem 'pg', '~>0.18.2'
+gem 'unicorn', '~> 4.9.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -56,8 +59,6 @@ end
 
 group :production do
   #gems required by Heroku
-  gem 'pg'
-  gem 'unicorn'
   #gem 'rails_12factor'
 end
 
