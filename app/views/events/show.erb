@@ -1,3 +1,82 @@
 <div class="container">
-    <h1><%=@event.title%></h1>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="page-header">
+          <h1>
+            <%=@event.title%> <small>By <%=@event.host%></small>
+          </h1>
+        </div>
+        <dl class="dl-horizontal">
+          <dt>
+            Summary
+          </dt>
+          <dd>
+            <%=@event.summary%>
+          </dd>
+          <dt>
+            Description
+          </dt>
+          <dd>
+            <%=@event.description%>
+          </dd>
+          <dt>
+            Date
+          </dt>
+          <dd>
+            <%=@event.time.strftime("%A, %d %b %Y")%>
+          </dd>
+          <dt>
+            Time
+          </dt>
+          <dd>
+            <%=@event.time.strftime("%I %M %p")%>
+          </dd>
+          <dt>
+            Venue
+          </dt>
+          <dd>
+            <%=@event.venue%>
+          </dd>
+          <dt>
+            Participants
+          </dt>
+          <dd>
+            3 <button class="btn-link" data-toggle="modal" data-target="#myModal">View</button>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+  <!-- This is to leave a gap between the divs -->
+  <div style="margin-top:60px"></div>
+
+  <div class="row">
+    <div class="col-md-4 pull-right">
+    <a class="btn btn-default col-md-4" href="#" role="button">Join</a>
+    <a class="btn btn-default col-md-4" href="javascript:history.back()" role="button">Back</a>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Participants</h4>
+        </div>
+        <div class="modal-body">
+            <div>Person1</div>
+            <div>Person2</div>
+            <div>Person3</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Join</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
