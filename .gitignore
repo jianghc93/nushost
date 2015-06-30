@@ -17,6 +17,8 @@
 /tmp
 
 # various artifacts
+.DS_Store
+.project
 **.war
 *.rbc
 *.sassc
