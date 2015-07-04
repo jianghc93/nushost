@@ -1,33 +1,6 @@
 <div class="container">
   <form id="eventForm" method="post" action="/events">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <div class="form-group">
-      <label>Title</label>
-      <input type="text" id="title" class="form-control" name="title" placeholder="Title of your event">
-    </div>
-    <div class="form-group">
-      <label>Summary</label>
-      <input type="text" id="summary" class="form-control" name="summary" placeholder="Describe your event in one sentence">
-    </div>
-    <div class="form-group">
-      <label>Description</label>
-      <textarea class="form-control" id="description" rows="10" name="description" placeholder="Details about your event"></textarea>
-    </div>
-    <div class="row">
-        <div class="form-group col-md-4">
-          <label>Date</label>
-          <input type="text" id="date" class="form-control" name="date" placeholder="DD-MM-YYYY">
-        </div>
-        <div class="form-group col-md-4">
-              <label>Time</label>
-              <input type="text" id="time" class="form-control" name="time" placeholder="07:00 PM">
-        </div>
-    </div>
-    <div class="form-group">
-      <label>Venue</label>
-      <input type="text" id="venue" class="form-control" name="venue" placeholder="Where the event is at">
-    </div>
-    <!--<button type="submit" class="btn btn-default">Create</button>-->
-    <%= button_tag "Create", class: "btn btn-default", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Creating event..."}%>
+    <%=load_form nil%>
+    <%= button_tag "Create", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Creating event..."}%>
   </form>
 </div>

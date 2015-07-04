@@ -1,0 +1,7 @@
+<div class="container">
+  <form id="eventForm" method="post" action="/events/<%= @event.id%>">
+    <input name="_method" type="hidden" value="patch" />
+    <%= load_form @event%>
+    <%= button_tag "Update", class: "btn btn-default", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Updating event..."}%>
+  </form>
+</div>

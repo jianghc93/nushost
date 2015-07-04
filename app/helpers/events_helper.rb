@@ -15,4 +15,28 @@ module EventsHelper
 
     render 'menunav'
   end
+
+  #choose which set of btns to render
+  def load_btn option, event_id
+    if option == 1
+      render partial: 'editDeleteBtn', locals: { event_id: event_id }
+    else
+      render partial: 'infoJoinBtn', locals: { event_id: event_id }
+    end
+  end
+
+  def load_form event
+    if event == nil
+      render 'formfields'
+    else
+      @title = event.title
+      @summary = event.summary
+      @description = event.description
+      @date = event.time.strftime("%d-%m-%Y")
+      @time = event.time.strftime("%I:%M %p")
+      @venue = event.venue
+      render 'formfields'
+    end
+  end
+
 end

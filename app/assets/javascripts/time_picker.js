@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+    //this js code is just for fun
     $("label").click(function(){
         $(this).hide();
     });

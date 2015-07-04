@@ -1,0 +1,27 @@
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<div class="form-group">
+  <label>Title</label>
+  <input type="text" id="title" class="form-control" name="title" placeholder="Title of your event" value="<%= @title%>">
+</div>
+<div class="form-group">
+  <label>Summary</label>
+  <input type="text" id="summary" class="form-control" name="summary" placeholder="Describe your event in one sentence" value="<%= @summary%>">
+</div>
+<div class="form-group">
+  <label>Description</label>
+  <textarea class="form-control" id="description" rows="10" name="description" placeholder="Details about your event"><%= @description%></textarea>
+</div>
+<div class="row">
+  <div class="form-group col-md-4">
+    <label>Date</label>
+    <input type="text" id="date" class="form-control" name="date" placeholder="DD-MM-YYYY" value="<%= @date%>">
+  </div>
+  <div class="form-group col-md-4">
+    <label>Time</label>
+    <input type="text" id="time" class="form-control" name="time" placeholder="07:00 PM" value="<%= @time%>">
+  </div>
+</div>
+<div class="form-group">
+  <label>Venue</label>
+  <input type="text" id="venue" class="form-control" name="venue" placeholder="Where the event is at" value="<%= @venue%>">
+</div>
