@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
   #methods defined here are available across all controllers, but not in views. For views use the helper 
   def current_user
     if session[:user_id]
-      @current_user = User.find_by(id: session[:user_id])
+      #converts the user hash into an user object
+      @current_user = OpenStruct.new(session[:user])
     end
   end
 

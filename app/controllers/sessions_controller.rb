@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
           user = User.create(name: registration['fullname'], nickname: registration['nickname'], email: registration['email'])
         end
         session[:user_id] = user.id
+        session[:user] = user
       else
         flash[:login_fail] = "You have failed to login:("
       end
