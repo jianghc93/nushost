@@ -37,6 +37,11 @@ body{
   outline:none!important
 }
 
+#searchbox{
+  min-width: 250px;
+  padding:12px;
+}
+
 .unhappyMessage{
   color: red;
 }
