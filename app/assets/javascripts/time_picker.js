@@ -12,9 +12,9 @@ $(document).ready(function(){
 
     $('#date').datetimepicker({
         format: 'DD-MM-YYYY',
-        widgetPositioning: {vertical:'top',  horizontal:'right'}
+        widgetPositioning: {vertical:'top',  horizontal:'right'},
+        minDate: new Date()
     });
-
 
 
 
