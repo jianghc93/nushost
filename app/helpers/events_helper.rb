@@ -39,4 +39,12 @@ module EventsHelper
     end
   end
 
+  def load_search_results events
+    if events.blank?
+      render plain: "Sorry there are no events that match your search"
+    else
+      render 'tableofevents'
+    end
+  end
+
 end

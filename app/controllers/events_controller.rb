@@ -15,6 +15,11 @@ class EventsController < ApplicationController
     @event = Event.find_by_id(params[:id])
   end
 
+  #search for events
+  def search
+    @events = Event.search(params[:query])
+  end
+
   #returns a html form for creating a new photo
   def new
   end
