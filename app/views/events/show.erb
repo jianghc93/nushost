@@ -41,7 +41,7 @@
             Participants
           </dt>
           <dd>
-            3 <button class="btn-link" data-toggle="modal" data-target="#myModal">View</button>
+            <%= @num_participants%> <button class="btn-link" data-toggle="modal" data-target="#myModal">View</button>
           </dd>
         </dl>
       </div>
@@ -52,8 +52,8 @@
 
   <div class="row">
     <div class="col-md-4 pull-right">
-    <a class="btn btn-default col-md-4" href="#" role="button">Join</a>
-    <a class="btn btn-default col-md-4" href="javascript:history.back()" role="button">Back</a>
+    <%= load_btn "join", @event.id%>
+    <a class="btn btn-default col-md-6" href="javascript:history.back()" role="button">Back</a>
     </div>
   </div>
 
@@ -67,13 +67,14 @@
           <h4 class="modal-title" id="myModalLabel">Participants</h4>
         </div>
         <div class="modal-body">
-            <div>Person1</div>
-            <div>Person2</div>
-            <div>Person3</div>
+            <div id="host"><%= @event.host%> <span class="glyphicon glyphicon-star"></span></div>
+            <% @users.each do |u|%>
+                <div><%= u.name%></div>
+            <% end%>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Join</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default col-md-4 pull-right" data-dismiss="modal">Close</button>
+          <a class="btn btn-primary col-md-4 pull-right" href="/events/join/<%= @event.id%>" role="button">Join</a>
         </div>
       </div>
     </div>

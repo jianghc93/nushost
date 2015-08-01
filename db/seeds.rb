@@ -12,3 +12,7 @@ Event.create(title: 'NUS Host Launch Party',
              summary: 'Orbital milestone party',
              time: Time.current(),
              venue: 'Some place')
+
+User.create(name: 'FatBoys',
+            nickname: 'Fatty',
+            email: 'Fat@hotmail.com')

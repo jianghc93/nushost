@@ -8,8 +8,13 @@ class ApplicationController < ActionController::Base
   #methods defined here are available across all controllers, but not in views. For views use the helper 
   def current_user
     if session[:user_id]
-      #converts the user hash into an user object
-      @current_user = OpenStruct.new(session[:user])
+      #returns a user object of the current user
+      User.new(id: session[:user]['id'],
+               name: session[:user]['name'],
+               nickname: session[:user]['nickname'],
+               email: session[:user]['email'],
+               created_at: session[:user]['created_at'],
+               updated_at: session[:user]['updated_at'])
     end
   end
 
@@ -23,6 +28,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  #allows @current_user to be accessed in views
+  #allows current_user to be accessed in views
   helper_method :current_user
 end

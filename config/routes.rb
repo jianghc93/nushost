@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#logout', as: 'logout'
   get '/events/myevents', to: 'events#myevents'
   get '/search', to: 'events#search'
+  get '/events/join/:id', to: 'events#join', as: 'join_event'
 
   resources :events
   #All the following get routes can be replaced by the above code

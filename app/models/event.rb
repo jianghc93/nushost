@@ -1,4 +1,7 @@
 class Event < ActiveRecord::Base
+  has_many :participants, dependent: :destroy
+  has_many :users , through: :participants
+
   validates :summary, :length => {:maximum => 50}
 
   def self.search(search)
@@ -12,7 +15,6 @@ class Event < ActiveRecord::Base
             search,
             search,
             search)
-
     end
   end
 

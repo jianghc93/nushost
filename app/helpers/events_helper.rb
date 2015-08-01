@@ -18,16 +18,21 @@ module EventsHelper
 
   #choose which set of btns to render
   def load_btn option, event_id
-    if option == 1
-      render partial: 'editDeleteBtn', locals: { event_id: event_id }
-    else
-      render partial: 'infoJoinBtn', locals: { event_id: event_id }
+    case option
+      when "info"
+        render partial: 'infoBtn', locals: { event_id: event_id }
+      when "join"
+        render partial: 'joinBtn', locals: { event_id: event_id }
+      when "edit"
+        render partial: 'editBtn', locals: { event_id: event_id }
+      when "delete"
+        render partial: 'deleteBtn', locals: { event_id: event_id }
     end
   end
 
   def load_form event
     if event == nil
-      render 'formfields'
+      #do nothing
     else
       @title = event.title
       @summary = event.summary
@@ -35,8 +40,8 @@ module EventsHelper
       @date = event.time.strftime("%d-%m-%Y")
       @time = event.time.strftime("%I:%M %p")
       @venue = event.venue
-      render 'formfields'
     end
+    render 'formfields'
   end
 
   def load_search_results events
