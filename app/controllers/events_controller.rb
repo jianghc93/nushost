@@ -54,10 +54,15 @@ class EventsController < ApplicationController
                          host: user.name)
 
     if event.valid?
-      Participant.create(user_id: user.id,
-                         event_id: event.id,
-                         role: "host")
-      flash[:event_succ] = "You have successfully created an event"
+      part = Participant.create(user_id: user.id,
+                                event_id: event.id,
+                                role: "host")
+      if part.valid?
+        flash[:event_succ] = "You have successfully created an event"
+      else
+        event.delete
+        flash[:event_fail] = "You have failed to create the event:("
+      end
     else
       flash[:event_fail] = "You have failed to create the event:("
     end
@@ -90,12 +95,16 @@ class EventsController < ApplicationController
 
   def join
     user = current_user
-    part = Participant.create(user_id: user.id,
-                              event_id: params[:id])
-    if part.valid?
-      flash[:event_succ] = "You have successfully joined "
+    if Event.find(params[:id]).users.include?(user)
+      flash[:event_fail] = "You have already joined this event^.^"
     else
-      flash[:event_fail] = "You have failed to join"
+      part = Participant.create(user_id: user.id,
+                                event_id: params[:id])
+      if part.valid?
+        flash[:event_succ] = "You have successfully joined"
+      else
+        flash[:event_fail] = "You have failed to join"
+      end
     end
     redirect_to event_path(params[:id])
   end
@@ -114,6 +123,5 @@ class EventsController < ApplicationController
 
     return Time.new(arrDate[2], arrDate[1], arrDate[0], arrTime[0], arrTime[1])
   end
-
 
 end
