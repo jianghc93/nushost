@@ -41,7 +41,7 @@
             Participants
           </dt>
           <dd>
-            <%= @num_participants%> <button class="btn-link" data-toggle="modal" data-target="#myModal">View</button>
+            <%= @event.size%> <button class="btn-link" data-toggle="modal" data-target="#myModal">View</button>
           </dd>
         </dl>
       </div>
@@ -52,7 +52,7 @@
 
   <div class="row">
     <div class="col-md-4 pull-right">
-    <%= load_btn "join", @event.id%>
+    <%= load_btn "join", @event%>
     <a class="btn btn-default col-md-6" href="javascript:history.back()" role="button">Back</a>
     </div>
   </div>

@@ -18,4 +18,25 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def size
+    self.users.size
+  end
+
+  def isHost? user
+    host = self.participants.select { |p| p.role == "host" }
+    if user.is_a? User
+      host.first.user_id == user.id
+    else
+      host.first.user_id == user
+    end
+  end
+
+  def isParticipant? user
+    if user.is_a? User
+      self.users.include?(user)
+    else
+      !self.users.select { |u| u.id == user }.empty?
+    end
+  end
+
 end

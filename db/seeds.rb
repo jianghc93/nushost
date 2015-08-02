@@ -16,3 +16,7 @@ Event.create(title: 'NUS Host Launch Party',
 User.create(name: 'FatBoys',
             nickname: 'Fatty',
             email: 'Fat@hotmail.com')
+
+Participant.create(user_id: 2,
+                   event_id: 2,
+                   role: "host")

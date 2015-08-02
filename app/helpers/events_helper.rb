@@ -16,17 +16,21 @@ module EventsHelper
     render 'menunav'
   end
 
-  #choose which set of btns to render
-  def load_btn option, event_id
+  #choose which btn to render
+  def load_btn option, event
     case option
       when "info"
-        render partial: 'infoBtn', locals: { event_id: event_id }
+        render partial: 'infoBtn', locals: { event_id: event.id }
       when "join"
-        render partial: 'joinBtn', locals: { event_id: event_id }
+        if event.isParticipant?(session[:user_id])
+          render partial: 'quitBtn', locals: { event_id: event.id }
+        else
+          render partial: 'joinBtn', locals: { event_id: event.id }
+        end
       when "edit"
-        render partial: 'editBtn', locals: { event_id: event_id }
+        render partial: 'editBtn', locals: { event_id: event.id }
       when "delete"
-        render partial: 'deleteBtn', locals: { event_id: event_id }
+        render partial: 'deleteBtn', locals: { event_id: event.id }
     end
   end
 

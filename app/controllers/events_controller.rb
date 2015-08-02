@@ -22,7 +22,6 @@ class EventsController < ApplicationController
   #shows a single event
   def show
     @event = Event.find_by_id(params[:id])
-    @num_participants = @event.users.size
     #event.participants returns a collection and we CANT perform query on it
     host = @event.participants.select { |p| p.role == "host" }
     @users = @event.users.select { |u| u.id != host.first.user_id }     #excludes the host
@@ -41,6 +40,10 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    if !@event.isHost? session[:user_id]
+      flash[:event_fail] = "You cannot edit this event:("
+      redirect_to root_url
+    end
   end
 
   #create a new event
@@ -58,27 +61,31 @@ class EventsController < ApplicationController
                                 event_id: event.id,
                                 role: "host")
       if part.valid?
-        flash[:event_succ] = "You have successfully created an event"
+        flash[:event_succ] = "You have successfully created #{event.title}"
       else
         event.delete
-        flash[:event_fail] = "You have failed to create the event:("
+        flash[:event_fail] = "You have failed to create #{event.title}:("
       end
     else
-      flash[:event_fail] = "You have failed to create the event:("
+      flash[:event_fail] = "You have failed to create #{event.title}:("
     end
     redirect_to root_url
   end
 
   def update
     @event = Event.find(params[:id])
-    if @event.update(title: params[:title],
-                     summary: params[:summary],
-                     description: params[:description],
-                     time: makeDate(params[:date], params[:time]),
-                     venue: params[:venue])
-      flash[:event_succ] = "You have successfully updated your event"
+    if !@event.isHost? session[:user_id]
+      flash[:event_fail] = "You cannot edit this event:("
     else
-      flash[:event_fail] = "You have failed to update the event:("
+      if @event.update(title: params[:title],
+                       summary: params[:summary],
+                       description: params[:description],
+                       time: makeDate(params[:date], params[:time]),
+                       venue: params[:venue])
+        flash[:event_succ] = "You have successfully updated #{@event.title}"
+      else
+        flash[:event_fail] = "You have failed to update #{@event.title}:("
+      end
     end
     redirect_to events_myevents_url
   end
@@ -86,9 +93,9 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     if @event.destroy
-      flash[:event_succ] = "You have successfully deleted your event"
+      flash[:event_succ] = "You have successfully deleted #{@event.title}"
     else
-      flash[:event_fail] = "You have failed to delete the event:("
+      flash[:event_fail] = "You have failed to delete #{@event.title}:("
     end
     redirect_to events_myevents_url
   end
@@ -101,12 +108,28 @@ class EventsController < ApplicationController
       part = Participant.create(user_id: user.id,
                                 event_id: params[:id])
       if part.valid?
-        flash[:event_succ] = "You have successfully joined"
+        flash[:event_succ] = "You have successfully joined:)"
       else
         flash[:event_fail] = "You have failed to join"
       end
     end
     redirect_to event_path(params[:id])
+  end
+
+  def quit
+    user = current_user
+    event = Event.find(params[:id])
+    if event.isHost?(user) || !event.isParticipant?(user)
+      flash[:event_fail] = "You cannot quit #{event.title}"
+    else
+      part = event.participants.where("user_id = ?", user.id)
+      if part.first.delete
+        flash[:event_succ] = "You have quit #{event.title}"
+      else
+        flash[:event_fail] = "You have failed to quit #{event.title}"
+      end
+    end
+    redirect_to root_url
   end
 
   #makes use of the time and date given by the user in the form to create a Time object
