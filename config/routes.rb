@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#login', as: 'login'
   get '/logout', to: 'sessions#logout', as: 'logout'
   get '/events/myevents', to: 'events#myevents'
+  get '/events/manage', to: 'events#manage'
   get '/search', to: 'events#search'
   get '/events/join/:id', to: 'events#join', as: 'join_event'
   post '/events/quit/:id', to: 'events#quit', as: 'quit_event'

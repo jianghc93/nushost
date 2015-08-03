@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
   #methods defined here are available across all controllers, but not in views. For views use the helper 
   def current_user
     if session[:user_id]
-      #returns a user object of the current user
+      #returns a user object of the current user. HOWEVER this object does not have relations(i.e. user.events will return an empty collection)
+      #user.participants seems to work though O.o
       User.new(id: session[:user]['id'],
                name: session[:user]['name'],
                nickname: session[:user]['nickname'],

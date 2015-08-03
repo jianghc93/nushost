@@ -7,8 +7,16 @@ class EventsController < ApplicationController
     @btn2 = "join"
   end
 
-  #shows all events created by user
+  #shows all events that user is going to
   def myevents
+    @events = User.find(session[:user_id]).events
+    #renders the info and join button
+    @btn1 = "info"
+    @btn2 = "join"
+  end
+
+  #shows all events created by user
+  def manage
     @events = []
     participants = current_user.participants.where("role = ?", "host").reverse_order
     participants.each do |p|
