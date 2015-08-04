@@ -1,7 +1,13 @@
 class EventsController < ApplicationController
-  #shows all events
+  #shows all events except for those that are expired
   def index
-    @events = Event.all.reverse_order
+    @events = []
+    events = Event.all.reverse_order
+    events.each do |e|
+      if Time.new < e.time
+        @events << e
+      end
+    end
     #renders the info and join button
     @btn1 = "info"
     @btn2 = "join"
@@ -128,7 +134,7 @@ class EventsController < ApplicationController
     user = current_user
     event = Event.find(params[:id])
     if event.isHost?(user) || !event.isParticipant?(user)
-      flash[:event_fail] = "You cannot quit #{event.title}"
+      flash[:event_fail] = "You cannot quit your own event. You can delete it under the Manage Tab"
     else
       part = event.participants.where("user_id = ?", user.id)
       if part.first.delete

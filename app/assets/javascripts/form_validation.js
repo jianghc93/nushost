@@ -1,10 +1,5 @@
 $(document).ready(function(){
 
-    //this event handler doesnt work if it is placed after isHappy...
-    //$('#eventForm').submit(function(event){
-      //  event.preventDefault();
-    //});
-
     $('#eventForm').isHappy({
         fields: {
             // reference the field you're talking about, probably by `id`
@@ -13,7 +8,7 @@ $(document).ready(function(){
                 required: true,
                 message: 'Please give your event a title',
                 test: maxLength,
-                arg: 50,
+                arg: 50
             },
             '#summary': {
                 required: true,
@@ -31,7 +26,7 @@ $(document).ready(function(){
             },
             '#time': {
                 required: true,
-                message: 'Please fill in time with the format 7:00 PM or 11:59 AM',
+                message: 'Please fill in a valid time',
                 test: time
             },
             '#venue': {
@@ -39,9 +34,10 @@ $(document).ready(function(){
                 message: 'Please give a venue for your event'
             }
         },
+
         unHappy: function () {
-            $('#eventForm').submit(function(e){
-                e.preventDefault();
+            //$('#eventForm').submit(function(e){
+            //    e.preventDefault();
                 if ($('#title').val().length == 0)
                     $('#title').closest('.form-group').find('span')[0].innerHTML = "Please give your event a title";
                 else if ($('#title').val().length != 0 &&  $('#title').val().length >= 50)
@@ -51,12 +47,8 @@ $(document).ready(function(){
                     $('#summary').closest('.form-group').find('span')[0].innerHTML = "Please give a summary of what your event is about";
                 else if ($('#summary').val().length >= 100)
                     $('#summary').closest('.form-group').find('span')[0].innerHTML = "Please keep the summary short and sweet";
-
-                if ($('#time').val().length == 0)
-                    $('#time').closest('.form-group').find('span')[0].innerHTML = "Please fill in time with the format 7:00 PM or 11:59 AM";
-                else if (!time($('#time').val()))
-                    $('#time').closest('.form-group').find('span')[0].innerHTML = "Please give a valid time";
-            });
+            //});
+            //$('#eventForm').unbind('submit');
         }
 
     });
