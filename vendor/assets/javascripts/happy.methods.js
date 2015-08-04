@@ -20,4 +20,5 @@ var happy = {
     equalLength: function (val, length) {
         return (val.length == length);
     }
+
 };

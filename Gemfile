@@ -32,7 +32,7 @@ gem 'ruby-openid', '~> 2.7.0'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'autoprefixer-rails'
 gem 'momentjs-rails', '>= 2.9.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 
 gem 'pg', '~>0.18.2'
 gem 'unicorn', '~> 4.9.0'

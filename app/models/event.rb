@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   has_many :participants, dependent: :destroy
   has_many :users , through: :participants
 
-  validates :summary, :length => {:maximum => 50}
+  #validates :summary, :length => {:maximum => 50}
 
   def self.search(search)
     if search.to_i != 0

@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
     //this js code is just for fun
-    $("label").click(function(){
-        $(this).hide();
-    });
+    //$("label").click(function(){
+    //    $(this).hide();
+    //});
 
     $('#time').datetimepicker({
         format: 'LT',
