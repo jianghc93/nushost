@@ -58,7 +58,8 @@ $(document).ready(function(){
         valid_time =  /[1-9][:][0-5][0-9]\s(P||A)[M]/.test(val) ||
                       /[1][0-2][:][0-5][0-9]\s(P||A)[M]/.test(val);
         if(valid_time){
-            return moment(val, ["h:mm A"]).isAfter(moment());
+            var date = $('#date').val();
+            return moment(date, "DD-MM-YYYY").isAfter(moment()) || moment(val, ["h:mm A"]).isAfter(moment());
         } else {
             return false;
         }
