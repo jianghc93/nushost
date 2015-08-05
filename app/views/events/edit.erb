@@ -5,3 +5,11 @@
     <%= button_tag "Update", class: "btn btn-default", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Updating event..."}%>
   </form>
 </div>
+
+
+<script>
+    $(document).ready(function(){
+        var loc = <%= raw @event.to_json%>;
+        gmap_form(loc);    // form map for new view (print nothing with possibility of put marker)
+    });
+</script>

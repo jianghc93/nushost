@@ -1,6 +1,14 @@
 <div class="container">
   <form id="eventForm" method="post" action="/events">
     <%=load_form nil%>
+
     <%= button_tag "Create", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Creating event..."}%>
   </form>
 </div>
+
+
+<script>
+    $(document).ready(function(){
+        gmap_form();    // form map for new view (print nothing with possibility of put marker)
+    });
+</script>

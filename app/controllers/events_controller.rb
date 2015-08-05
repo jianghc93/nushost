@@ -15,7 +15,7 @@ class EventsController < ApplicationController
 
   #shows all events that user is going to
   def myevents
-    @events = User.find(session[:user_id]).events
+    @events = User.find(session[:user_id]).events.reverse_order
     #renders the info and join button
     @btn1 = "info"
     @btn2 = "join"
@@ -63,13 +63,23 @@ class EventsController < ApplicationController
   #create a new event
   def create
     user = current_user
-    event = Event.create(title: params[:title],
-                         summary: params[:summary],
-                         description: params[:description],
-                         time: makeDate(params[:date], params[:time]),
-                         venue: params[:venue],
-                         host: user.name)
-
+    if(params[:usemap] == "true")
+      event = Event.create(title: params[:title],
+                           summary: params[:summary],
+                           description: params[:description],
+                           time: makeDate(params[:date], params[:time]),
+                           venue: params[:venue],
+                           host: user.name,
+                           lat: params[:map_lat],
+                           lng: params[:map_lng])
+    else
+      event = Event.create(title: params[:title],
+                           summary: params[:summary],
+                           description: params[:description],
+                           time: makeDate(params[:date], params[:time]),
+                           venue: params[:venue],
+                           host: user.name)
+    end
     if event.valid?
       part = Participant.create(user_id: user.id,
                                 event_id: event.id,
@@ -91,11 +101,22 @@ class EventsController < ApplicationController
     if !@event.isHost? session[:user_id]
       flash[:event_fail] = "You cannot edit this event:("
     else
-      if @event.update(title: params[:title],
-                       summary: params[:summary],
-                       description: params[:description],
-                       time: makeDate(params[:date], params[:time]),
-                       venue: params[:venue])
+      if(params[:usemap] == "true")
+        event = @event.update(title: params[:title],
+                             summary: params[:summary],
+                             description: params[:description],
+                             time: makeDate(params[:date], params[:time]),
+                             venue: params[:venue],
+                             lat: params[:map_lat],
+                             lng: params[:map_lng])
+      else
+        event = @event.update(title: params[:title],
+                             summary: params[:summary],
+                             description: params[:description],
+                             time: makeDate(params[:date], params[:time]),
+                             venue: params[:venue])
+      end
+      if event
         flash[:event_succ] = "You have successfully updated #{@event.title}"
       else
         flash[:event_fail] = "You have failed to update #{@event.title}:("

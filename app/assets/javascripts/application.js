@@ -17,6 +17,10 @@
 //= require happy
 //= require moment
 //= require bootstrap-datetimepicker
+//= require underscore-min
+//= require gmaps/google
+//= require googlemaps
+//= require googleutil-min
 //= require_tree .
 
 //= require bootstrap-sprockets

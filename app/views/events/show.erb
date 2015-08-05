@@ -47,6 +47,7 @@
       </div>
     </div>
 
+  <div id="map" style="width:100%;height:480px;"></div>
   <!-- This is to leave a gap between the divs -->
   <div style="margin-top:60px"></div>
 
@@ -81,3 +82,14 @@
   </div>
 
 </div>
+
+<script>
+    $(document).ready(function(){
+        var loc = <%= raw @event.to_json%>;
+        if(loc.lat == null || loc.lng == null){
+            $('#map').remove();
+        } else {
+            gmap_show(loc);
+        }
+    });
+</script>

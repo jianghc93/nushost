@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20150729015835) do
     t.string   "venue",       null: false
     t.text     "description", null: false
     t.datetime "time",        null: false
+    t.string   "lat"
+    t.string   "lng"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

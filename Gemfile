@@ -36,6 +36,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 
 gem 'pg', '~>0.18.2'
 gem 'unicorn', '~> 4.9.0'
+gem 'gmaps4rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
