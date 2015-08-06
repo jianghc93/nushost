@@ -13,7 +13,8 @@ $(document).ready(function(){
     $('#date').datetimepicker({
         format: 'DD-MM-YYYY',
         widgetPositioning: {vertical:'top',  horizontal:'right'},
-        minDate: new Date()
+        minDate: moment().subtract(1, 'days'),
+        disabledDates: [moment().subtract(1, 'days')]
     });
 
 
