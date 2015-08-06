@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   
   #this is the old convention
   #get '/welcome' => 'welcome#index'
+  #the more specific the route the higher priority it should have
 
+  get '/aboutus', to: 'welcomes#aboutus'
   get '/login', to: 'sessions#login', as: 'login'
   get '/logout', to: 'sessions#logout', as: 'logout'
   get '/events/myevents', to: 'events#myevents'
