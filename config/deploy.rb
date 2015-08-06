@@ -3,7 +3,7 @@ lock '3.4.0'
 
 set :application, 'nushost'
 set :repo_url, 'https://github.com/jianghc93/nushost.git'
-set :branch, 'capistrano-test'
+#set :branch, 'capistrano-test'
 #set :rails_env, "production"
 
 # Default branch is :master

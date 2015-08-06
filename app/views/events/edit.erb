@@ -6,10 +6,11 @@
   </form>
 </div>
 
-
 <script>
     $(document).ready(function(){
         var loc = <%= raw @event.to_json%>;
+        var replaceDate = $('#date').attr('value');
+        $('#date').val(replaceDate);
         gmap_form(loc);    // form map for new view (print nothing with possibility of put marker)
     });
 </script>
